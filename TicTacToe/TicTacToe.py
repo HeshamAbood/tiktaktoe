@@ -55,8 +55,6 @@ print(player_mark)
 
 def on_button(n,nn):
     print('Button {} clicked {}'.format(n,nn))
-    print(type(n))
-    print(dir(n))
     global player_mark
     print("button clicked")
     print("playermark", player_mark)
@@ -66,8 +64,14 @@ def on_button(n,nn):
     print("idx",idx)
     test_board[int(idx)]=mark
     btn.setIcon(QIcon('TicTacToe//python.png'))
-    win_check(test_board,mark )
+    
     btn.setEnabled(False)
+    if win_check(test_board,mark ):
+        if mark ==p1:
+            print("player1 win")
+        else:
+            print ("player2 win")
+
 
     if player_mark=="x":
         player_mark="o"
@@ -88,14 +92,11 @@ for r in play_btn:
         btn.clicked.connect(lambda: on_button(btn,i))
 
 
-
     wid=100
     hgh+=100+sp
     print(rdx)
     rdx+=1
     
-
-
 
 window.show()
 app.exec_()
