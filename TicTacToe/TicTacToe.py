@@ -19,6 +19,21 @@ wid=100
 hgh=100
 sp=20
 
+
+
+def win_check(board, mark):
+
+    return ((board[7] == mark and board[8] == mark and board[9] == mark) or  
+            (board[4] == mark and board[5] == mark and board[6] == mark) or  
+            (board[1] == mark and board[2] == mark and board[3] == mark) or  
+            (board[7] == mark and board[4] == mark and board[1] == mark) or  
+            (board[8] == mark and board[5] == mark and board[2] == mark) or  
+            (board[9] == mark and board[6] == mark and board[3] == mark) or  
+            (board[7] == mark and board[5] == mark and board[3] == mark) or  
+            (board[9] == mark and board[5] == mark and board[1] == mark))
+
+
+
 test_board = ['#',None,None,None,None,None,None,None,None,None]
 
 result = QMessageBox.question(window, 'Welcome to Tic Tac Toe!', "Player1 select yes to use X, No to use O?", QMessageBox.Yes|QMessageBox.No)
@@ -32,28 +47,33 @@ else:
     print('No')
     p1="o"
     p2="x"
-    player_mark=p1
+
 
 player_mark=p1
 print(player_mark)
 
-def toggleBtnPic(event):
+
+def on_button(n,nn):
+    print('Button {} clicked {}'.format(n,nn))
+    print(type(n))
+    print(dir(n))
     global player_mark
     print("button clicked")
     print("playermark", player_mark)
     mark=player_mark
     
-    idx=event.text( )
+    idx=n.text( )
     print("idx",idx)
-    test_board[idx]=mark
-    event.setIcon(QIcon('TicTacToe//python.png'))
+    test_board[int(idx)]=mark
+    btn.setIcon(QIcon('TicTacToe//python.png'))
     win_check(test_board,mark )
-    event.setEnabled(False)
+    btn.setEnabled(False)
 
     if player_mark=="x":
         player_mark="o"
     else:
         player_mark="x"
+
 i=0
 for r in play_btn:
     print(r)
@@ -64,7 +84,10 @@ for r in play_btn:
         btn.setText(str(i))
         i+=1
         btn.setIcon(QIcon(pixmap))
-        btn.clicked.connect(toggleBtnPic)
+        #btn.clicked.connect(toggleBtnPic)
+        btn.clicked.connect(lambda: on_button(btn,i))
+
+
 
     wid=100
     hgh+=100+sp
@@ -77,15 +100,5 @@ for r in play_btn:
 window.show()
 app.exec_()
 
-def win_check(board, mark):
-
-    return ((board[7] == mark and board[8] == mark and board[9] == mark) or  
-            (board[4] == mark and board[5] == mark and board[6] == mark) or  
-            (board[1] == mark and board[2] == mark and board[3] == mark) or  
-            (board[7] == mark and board[4] == mark and board[1] == mark) or  
-            (board[8] == mark and board[5] == mark and board[2] == mark) or  
-            (board[9] == mark and board[6] == mark and board[3] == mark) or  
-            (board[7] == mark and board[5] == mark and board[3] == mark) or  
-            (board[9] == mark and board[5] == mark and board[1] == mark))
 
 
