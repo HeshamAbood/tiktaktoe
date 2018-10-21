@@ -1,0 +1,9 @@
+I been working on this for hours and I cant get it right, any help would be appreciated! My question is how do I use the function .readline() to read until the end of a text file? I know that .readlines() work as well but I'm trying to process one line at a time.
+
+Here's what I have for my code so far:
+
+    a = open("SampleTxt.txt","r")
+
+    While True:
+
+        a.readline()

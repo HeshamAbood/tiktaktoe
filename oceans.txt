@@ -1,0 +1,7 @@
+pacific
+Atlantic
+Indian
+Soutrhern
+Arcitec
+=======================
+These are the 5 oceans.

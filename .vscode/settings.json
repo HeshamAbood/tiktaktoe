@@ -1,0 +1,7 @@
+{
+    "files.defaultLanguage": ".py"
+    ,
+    "python.linting.pylintArgs": [
+        "--extension-pkg-whitelist=PyQt5"
+    ],
+}
