@@ -18,6 +18,7 @@ window.setToolTip('TicTacToe')
 
 window.resize(700, 700)
 window.move(100, 100)
+# window.setGeometry(300, 300, 400, 400)
 pixmap = QPixmap('TicTacToe//border.png')
 play_again_btn=QPushButton("play again",window)
 play_again_btn.resize(120,60)
@@ -34,6 +35,7 @@ def game_init():
     global test_board, result,p1,p2
 
     test_board = ['#',None,None,None,None,None,None,None,None,None]
+
     result = QMessageBox.question(window, 'Welcome to Tic Tac Toe!', "Player1 select yes to use X, No to use O?", QMessageBox.Yes|QMessageBox.No)
 
     if result==QMessageBox.Yes:
@@ -61,15 +63,19 @@ def win_check(board, mark):
 
 game_init()
 
+
+
 def on_button(n,idx):
     print('Button {} clicked'.format(n))
     global player_mark
     print("playermark", player_mark)
     mark=player_mark
     
+    #idx=n.text( )
     print("idx",idx)
     test_board[int(idx)]=mark
     print(test_board)
+
 
     if player_mark=="x":
         n.setIcon(QIcon('TicTacToe//x.png'))
@@ -80,6 +86,7 @@ def on_button(n,idx):
 
     n.setEnabled(False)
 
+
     if win_check(test_board,mark ):
         if mark ==p1:
             print("player1 win")
@@ -87,15 +94,23 @@ def on_button(n,idx):
             print ("player2 win")
         stop_game()
 
+
+i=0
 for r in play_btn:
     print(r)
     for btn in r:
         btn.resize(100,100)
         btn.move(sp+wid,sp+hgh)
         wid+=100+sp
+        #btn.setText(str(i))
+        i+=1
         btn.setIcon(QIcon(pixmap))
+        #btn.clicked.connect(toggleBtnPic)
+        #btn.clicked.connect(lambda btn=btn,i=i : on_button(btn,i))
     wid=100
     hgh+=100+sp
+    print(rdx)
+    rdx+=1
 
 mapping = [(play_btn[0][0], 1),
            (play_btn[0][1], 2),
@@ -106,6 +121,7 @@ mapping = [(play_btn[0][0], 1),
            (play_btn[2][0], 7),
            (play_btn[2][1], 8),
            (play_btn[2][2], 9)]
+
 
 for button, n  in mapping:
     button.clicked.connect(partial(on_button,button,n))
@@ -125,6 +141,9 @@ def game_reset():
         button.setIcon(QIcon(pixmap))
         button.setEnabled(True)
     play_again_btn.setVisible(False)
+
+
+    
 
 play_again_btn.clicked.connect(game_reset)
 
